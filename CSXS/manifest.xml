@@ -27,7 +27,7 @@
 			<Locale Code="All" />
 		</LocaleList>
 		<RequiredRuntimeList>
-			<RequiredRuntime Name="CSXS" Version="4.0" />
+			<RequiredRuntime Name="CSXS" Version="6.0" />
 		</RequiredRuntimeList>
 	</ExecutionEnvironment>
 	<DispatchInfoList>
@@ -49,8 +49,8 @@
 					<Menu>Highlights Workflow</Menu>
 					<Geometry>
 						<Size>
-							<Height>300</Height>
-							<Width>300</Width>
+							<Height>400</Height>
+							<Width>800</Width>
 						</Size>
 					</Geometry>
 				</UI>

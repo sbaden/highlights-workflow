@@ -1,4 +1,4 @@
 
 function parseObj(obj){
-    alert(obj.message);
+    // alert(obj.message);
 }

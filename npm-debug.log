@@ -1,109 +1,26 @@
 0 info it worked if it ends with ok
 1 verbose cli [ '/usr/local/Cellar/node/6.2.1/bin/node',
 1 verbose cli   '/usr/local/bin/npm',
-1 verbose cli   'install',
-1 verbose cli   '-D',
-1 verbose cli   '@types/replace-in-file' ]
+1 verbose cli   'start' ]
 2 info using npm@3.9.3
 3 info using node@v6.2.1
-4 silly loadCurrentTree Starting
-5 silly install loadCurrentTree
-6 silly install readLocalPackageData
-7 silly fetchPackageMetaData @types/replace-in-file
-8 silly fetchNamedPackageData @types/replace-in-file
-9 silly mapToRegistry name @types/replace-in-file
-10 silly mapToRegistry scope (from package name) @types
-11 verbose mapToRegistry no registry URL found in name for scope @types
-12 silly mapToRegistry using default registry
-13 silly mapToRegistry registry https://registry.npmjs.org/
-14 silly mapToRegistry data Result {
-14 silly mapToRegistry   raw: '@types/replace-in-file',
-14 silly mapToRegistry   scope: '@types',
-14 silly mapToRegistry   name: '@types/replace-in-file',
-14 silly mapToRegistry   rawSpec: '',
-14 silly mapToRegistry   spec: 'latest',
-14 silly mapToRegistry   type: 'tag' }
-15 silly mapToRegistry uri https://registry.npmjs.org/@types%2freplace-in-file
-16 verbose request uri https://registry.npmjs.org/@types%2freplace-in-file
-17 verbose request no auth needed
-18 info attempt registry request try #1 at 3:23:54 PM
-19 verbose request id a9a62a7b8d0c0596
-20 http request GET https://registry.npmjs.org/@types%2freplace-in-file
-21 http 404 https://registry.npmjs.org/@types%2freplace-in-file
-22 verbose headers { date: 'Tue, 21 Aug 2018 22:23:54 GMT',
-22 verbose headers   'content-type': 'application/json',
-22 verbose headers   'content-length': '21',
-22 verbose headers   connection: 'keep-alive',
-22 verbose headers   'set-cookie': [ '__cfduid=d88daf29809a53ff6aa7cb84fef1ca6dc1534890234; expires=Wed, 21-Aug-19 22:23:54 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
-22 verbose headers   'cf-cache-status': 'MISS',
-22 verbose headers   'cf-ray': '44e081bed9ff76ca-LAX',
-22 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
-22 verbose headers   vary: 'Accept-Encoding',
-22 verbose headers   server: 'cloudflare' }
-23 silly get cb [ 404,
-23 silly get   { date: 'Tue, 21 Aug 2018 22:23:54 GMT',
-23 silly get     'content-type': 'application/json',
-23 silly get     'content-length': '21',
-23 silly get     connection: 'keep-alive',
-23 silly get     'set-cookie': [ '__cfduid=d88daf29809a53ff6aa7cb84fef1ca6dc1534890234; expires=Wed, 21-Aug-19 22:23:54 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
-23 silly get     'cf-cache-status': 'MISS',
-23 silly get     'cf-ray': '44e081bed9ff76ca-LAX',
-23 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
-23 silly get     vary: 'Accept-Encoding',
-23 silly get     server: 'cloudflare' } ]
-24 silly fetchPackageMetaData Error: Not found : @types/replace-in-file
-24 silly fetchPackageMetaData     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
-24 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
-24 silly fetchPackageMetaData     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
-24 silly fetchPackageMetaData     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:200:22)
-24 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
-24 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
-24 silly fetchPackageMetaData     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1067:10)
-24 silly fetchPackageMetaData     at emitOne (events.js:101:20)
-24 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
-24 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:988:12)
-24 silly fetchPackageMetaData  error for @types/replace-in-file { Error: Not found : @types/replace-in-file
-24 silly fetchPackageMetaData     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
-24 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
-24 silly fetchPackageMetaData     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
-24 silly fetchPackageMetaData     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:200:22)
-24 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
-24 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
-24 silly fetchPackageMetaData     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1067:10)
-24 silly fetchPackageMetaData     at emitOne (events.js:101:20)
-24 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
-24 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:988:12)
-24 silly fetchPackageMetaData   pkgid: '@types/replace-in-file',
-24 silly fetchPackageMetaData   statusCode: 404,
-24 silly fetchPackageMetaData   code: 'E404' }
-25 silly rollbackFailedOptional Starting
-26 silly rollbackFailedOptional Finishing
-27 silly runTopLevelLifecycles Starting
-28 silly runTopLevelLifecycles Finishing
-29 silly install printInstalled
-30 verbose stack Error: Not found : @types/replace-in-file
-30 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
-30 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
-30 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
-30 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:200:22)
-30 verbose stack     at emitTwo (events.js:106:13)
-30 verbose stack     at Request.emit (events.js:191:7)
-30 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1067:10)
-30 verbose stack     at emitOne (events.js:101:20)
-30 verbose stack     at Request.emit (events.js:188:7)
-30 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:988:12)
-31 verbose statusCode 404
-32 verbose pkgid @types/replace-in-file
-33 verbose cwd /Library/Application Support/Adobe/CEP/extensions/highlights-workflow
-34 error Darwin 16.7.0
-35 error argv "/usr/local/Cellar/node/6.2.1/bin/node" "/usr/local/bin/npm" "install" "-D" "@types/replace-in-file"
-36 error node v6.2.1
-37 error npm  v3.9.3
-38 error code E404
-39 error 404 Not found : @types/replace-in-file
-40 error 404
-41 error 404 '@types/replace-in-file' is not in the npm registry.
-42 error 404 You should bug the author to publish it (or use the name yourself!)
-43 error 404 Note that you can also install from a
-44 error 404 tarball, folder, http url, or git url.
-45 verbose exit [ 1, true ]
+4 verbose stack Error: missing script: start
+4 verbose stack     at run (/usr/local/lib/node_modules/npm/lib/run-script.js:150:19)
+4 verbose stack     at /usr/local/lib/node_modules/npm/lib/run-script.js:60:5
+4 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:356:5
+4 verbose stack     at checkBinReferences_ (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:320:45)
+4 verbose stack     at final (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:354:3)
+4 verbose stack     at then (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:124:5)
+4 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:311:12
+4 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:78:16
+4 verbose stack     at tryToString (fs.js:449:3)
+4 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:436:12)
+5 verbose cwd /Library/Application Support/Adobe/CEP/extensions/highlights-workflow
+6 error Darwin 16.7.0
+7 error argv "/usr/local/Cellar/node/6.2.1/bin/node" "/usr/local/bin/npm" "start"
+8 error node v6.2.1
+9 error npm  v3.9.3
+10 error missing script: start
+11 error If you need help, you may report this error at:
+11 error     <https://github.com/npm/npm/issues>
+12 verbose exit [ 1, true ]

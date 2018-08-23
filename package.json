@@ -1,0 +1,23 @@
+{
+  "name": "highlights-workflow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "replace-in-file": "^3.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbaden/highlights-workflow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sbaden/highlights-workflow/issues"
+  },
+  "homepage": "https://github.com/sbaden/highlights-workflow#readme"
+}
