@@ -9,7 +9,7 @@ $(document).ready(function(){
     window.onload = function(){
 
         let profile_sot = {
-            xmlDirectory: '/Users/sbaden/Documents/_TEST_DIRECTORY/EDIT_HIGHLIGHTS/_PROJECTS/XML_DOCS/',
+            xmlDirectory: '/Users/sbaden/Documents/_TEST_DIRECTORY/EDIT_HIGHLIGHTS/_PROJECTS/XML_DOCS',
             targetXml: ''
         }
 
@@ -20,8 +20,8 @@ $(document).ready(function(){
                     profile_sot.targetXml = result;
                     // alert(profile_sot.targetXml);
 
-                    
-                    //////////////  CALLBACK FUNCTION /////////////////
+
+                    ////  CALLBACK FUNCTION WILL BE NEEDED FOR LOOP ////
                     ///////////////////////////////////////////////////
                     let currentShow = 'TOTAL_ACCESS';
                     let shows = ['GMF', 'GAMEDAY', 'AFTERMATH'];
@@ -47,25 +47,27 @@ $(document).ready(function(){
                         }
                         else{
                             alert('search & replace success');
+                            importXML();
                         }
                     });
                     ///////////////////////////////////////////////////
                     ///////////////////////////////////////////////////
 
-
-
-                    //// IMPORT RESULTING XML - AS CALLBACK FUNCTION
-                    //// IMPORT MIGHT BE ERRORING BECAUSE IT IS IMPORTING BEFORE XML HAS BEEN EDITED - FIGURE OUT CALLBACK ////
-                    csInterface.evalScript('importXML('+ JSON.stringify(profile_sot.targetXml) +')',
-                        function(result){
-                            if(result){
-                                // alert(result);
-                            }
-                        }
-                    );
+                    
                 }
             );
         });
+
+
+        function importXML(){
+            csInterface.evalScript('importXML('+ JSON.stringify(profile_sot.targetXml) +')',
+                function(result){
+                    if(result){
+                        alert(result);
+                    }
+                }
+            );
+        }
 
 
         
