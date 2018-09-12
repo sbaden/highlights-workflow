@@ -1,23 +1,57 @@
 
 // function parseObj(obj){
-    // alert(obj.message);
+//     alert(obj.message);
 // }
 
-function sayHello(){
-    alert('hello');
-}
+// function sayHello(){
+//     alert('hello');
+// }
 
 
-function exportXML(targetDirectory){
-    var folder = new Folder (targetDirectory);
+// function exportXML(targetDirectory){
+//     var folder = new Folder (targetDirectory);
     
-    if (targetDirectory) {
+//     if (targetDirectory) {
+//         var outputName = app.project.name;
+//         outputName = outputName.substr(0, outputName.lastIndexOf('.'));
+//         // alert('output name: ' + outputName);
+    
+//         var extention = '.xml';
+//         var completeOutputPath = targetDirectory + getSep() + outputName + extention;
+//         app.project.exportFinalCutProXML(completeOutputPath, 1); // 1 == suppress UI
+//         var info = "Exported FCP XML for " + 
+//             outputName + 
+//             " to " + 
+//             completeOutputPath + 
+//             ".";
+//         // $.writeln(info);
+//         // alert(info);
+
+//         return completeOutputPath;
+
+//     }
+//     else { $.writeln("XML Directory can not be found."); }
+// }
+
+// function importXML(targetFile){
+//     var result = app.project.importFiles([targetFile], 1); // 1 == suppress UI
+//     return result;
+// }
+
+
+
+
+function exportXML(obj){
+    // alert(obj.xmlDirectory);
+    var folder = new Folder (obj.xmlDirectory);
+    
+    if (obj.xmlDirectory) {
         var outputName = app.project.name;
         outputName = outputName.substr(0, outputName.lastIndexOf('.'));
-        alert('output name: ' + outputName);
+        // alert('output name: ' + outputName);
     
         var extention = '.xml';
-        var completeOutputPath = targetDirectory + getSep() + outputName + extention;
+        var completeOutputPath = obj.xmlDirectory + getSep() + outputName + extention;
         app.project.exportFinalCutProXML(completeOutputPath, 1); // 1 == suppress UI
         var info = "Exported FCP XML for " + 
             outputName + 
@@ -25,19 +59,49 @@ function exportXML(targetDirectory){
             completeOutputPath + 
             ".";
         // $.writeln(info);
-        alert(info);
+        // alert(info);
 
-        return completeOutputPath;
+        var currentShow = obj.currentShow;
+
+        for(var i = 0; i<obj.shows.length; i++){
+
+            var currentValue1 = new RegExp('<name>'+ currentShow + '<\/name>', 'g');
+            var currentValue2 = new RegExp('HIGHLIGHTS/'+ currentShow, 'g');
+            var currentValue3 = new RegExp('<name>'+ currentShow, 'g');
+
+            var newValue1 = '<name>'+ obj.shows[i] + '</name>';
+            var newValue2 = 'HIGHLIGHTS/'+ obj.shows[i];
+            var newValue3 = '<name>'+ obj.shows[i] + ' PWK';
+            // alert(currentValue1);
+            // alert(newValue1);
+
+            var myFile = new File(completeOutputPath);
+                myFile.open('e', undefined, undefined);
+
+            var inText = myFile.read();
+                inText = inText
+                    .replace(currentValue1, newValue1)
+                    .replace(currentValue2, newValue2)
+                    .replace(currentValue3, newValue3);
+
+            myFile.seek(0);
+            myFile.write(inText);
+            myFile.close();
+
+            importXML(completeOutputPath);
+            currentShow = obj.shows[i];
+            // alert(currentShow);
+        };
 
     }
-    else { $.writeln("XML Directory can not be found."); }
+    else { alert("XML Directory can not be found."); }
 }
 
 function importXML(targetFile){
+    // alert('importXML');
     var result = app.project.importFiles([targetFile], 1); // 1 == suppress UI
-    return result;
 }
-    
+
 
 function getSep() {
 	if (Folder.fs == 'Macintosh') {
@@ -46,8 +110,6 @@ function getSep() {
 		return '\\';
 	}
 }
-
-
 
 
 
