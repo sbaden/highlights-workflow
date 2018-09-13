@@ -25,14 +25,12 @@ function exportXML(obj){
 
     for(var i = 0; i<obj.shows.length; i++){
         // SET VALUES TO SEARCH FOR 
-        var currentValue1 = new RegExp('<name>'+ currentShow + '<\/name>', 'g');
+        var currentValue1 = new RegExp('<name>'+ currentShow, 'g');
         var currentValue2 = new RegExp('HIGHLIGHTS/'+ currentShow, 'g');
-        var currentValue3 = new RegExp('<name>'+ currentShow, 'g');
 
         // SET VALUES TO REPLACE WITH
-        var newValue1 = '<name>'+ obj.shows[i] + '</name>';
+        var newValue1 = '<name>'+ obj.shows[i];
         var newValue2 = 'HIGHLIGHTS/'+ obj.shows[i];
-        var newValue3 = '<name>'+ obj.shows[i] + ' PWK';
 
         // XML: OPEN, UPDATE, CLOSE
         var myFile = new File(completeOutputPath);
@@ -41,8 +39,7 @@ function exportXML(obj){
         var inText = myFile.read();
             inText = inText
                 .replace(currentValue1, newValue1)
-                .replace(currentValue2, newValue2)
-                .replace(currentValue3, newValue3);
+                .replace(currentValue2, newValue2);
 
         myFile.seek(0);
         myFile.write(inText);

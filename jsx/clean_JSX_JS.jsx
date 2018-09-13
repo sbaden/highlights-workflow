@@ -42,23 +42,3 @@ function getSep() {
 	var sep = Folder.fs == 'Macintosh' ?  '/' : '\\';
     return sep;
 }
-
-
-
-
-//// INCORPORATE INTO THE REFRESH PANEL BUTTON TO RELOAD JSX
-function loadJSX() {
-	var csInterface = new CSInterface();
-
-	// get the appName of the currently used app. For Premiere Pro it's "PPRO"
-	var appName = csInterface.hostEnvironment.appName;
-	var extensionPath = csInterface.getSystemPath(SystemPath.EXTENSION);
-
-	// load general JSX script independent of appName
-	var extensionRootGeneral = extensionPath + '/jsx/';
-	csInterface.evalScript('$._ext.evalFiles("' + extensionRootGeneral + '")');
-
-	// load JSX scripts based on appName
-	var extensionRootApp = extensionPath + '/jsx/' + appName + '/';
-	csInterface.evalScript('$._ext.evalFiles("' + extensionRootApp + '")');
-}
