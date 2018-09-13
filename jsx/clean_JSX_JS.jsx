@@ -1,11 +1,11 @@
 
-function parseObj(obj){
-    alert(obj.message);
-}
+// function parseObj(obj){
+//     alert(obj.message);
+// }
 
-function sayHello(){
-    alert('hello');
-}
+// function sayHello(){
+//     alert('hello');
+// }
 
 
 function exportXML(targetDirectory){
@@ -25,7 +25,6 @@ function exportXML(targetDirectory){
             completeOutputPath + 
             ".";
         // $.writeln(info);
-        // alert(info);
 
         return completeOutputPath;
 
@@ -40,11 +39,8 @@ function importXML(targetFile){
 
 
 function getSep() {
-	if (Folder.fs == 'Macintosh') {
-		return '/';
-	} else {
-		return '\\';
-	}
+	var sep = Folder.fs == 'Macintosh' ?  '/' : '\\';
+    return sep;
 }
 
 
