@@ -42,59 +42,64 @@
 
 
 function exportXML(obj){
-    // alert(obj.xmlDirectory);
-    var folder = new Folder (obj.xmlDirectory);
+    var projPath = app.project.path;
+    projPath = projPath.substr(0, projPath.lastIndexOf('/')+1);
+    xmlDirectory = projPath + 'XML_DOC';
+
+    if(! xmlDirectory.exists){ Folder(xmlDirectory).create(); }
+
+    // alert(xmlDirectory);
+
+
+    // var folder = new Folder (obj.xmlDirectory);
+    // var folder = new Folder (projPath);
     
-    if (obj.xmlDirectory) {
-        var outputName = app.project.name;
-        outputName = outputName.substr(0, outputName.lastIndexOf('.'));
-        // alert('output name: ' + outputName);
-    
-        var extention = '.xml';
-        var completeOutputPath = obj.xmlDirectory + getSep() + outputName + extention;
-        app.project.exportFinalCutProXML(completeOutputPath, 1); // 1 == suppress UI
-        var info = "Exported FCP XML for " + 
-            outputName + 
-            " to " + 
-            completeOutputPath + 
-            ".";
-        // $.writeln(info);
-        // alert(info);
+    var outputName = app.project.name;
+    outputName = outputName.substr(0, outputName.lastIndexOf('.'));
+    // alert('output name: ' + outputName);
 
-        var currentShow = obj.currentShow;
+    var extention = '.xml';
+    var completeOutputPath = xmlDirectory + getSep() + outputName + extention;
+    app.project.exportFinalCutProXML(completeOutputPath, 1); // 1 == suppress UI
+    var info = "Exported FCP XML for " + 
+        outputName + 
+        " to " + 
+        completeOutputPath + 
+        ".";
+    // $.writeln(info);
+    // alert(info);
 
-        for(var i = 0; i<obj.shows.length; i++){
+    var currentShow = obj.currentShow;
 
-            var currentValue1 = new RegExp('<name>'+ currentShow + '<\/name>', 'g');
-            var currentValue2 = new RegExp('HIGHLIGHTS/'+ currentShow, 'g');
-            var currentValue3 = new RegExp('<name>'+ currentShow, 'g');
+    for(var i = 0; i<obj.shows.length; i++){
 
-            var newValue1 = '<name>'+ obj.shows[i] + '</name>';
-            var newValue2 = 'HIGHLIGHTS/'+ obj.shows[i];
-            var newValue3 = '<name>'+ obj.shows[i] + ' PWK';
-            // alert(currentValue1);
-            // alert(newValue1);
+        var currentValue1 = new RegExp('<name>'+ currentShow + '<\/name>', 'g');
+        var currentValue2 = new RegExp('HIGHLIGHTS/'+ currentShow, 'g');
+        var currentValue3 = new RegExp('<name>'+ currentShow, 'g');
 
-            var myFile = new File(completeOutputPath);
-                myFile.open('e', undefined, undefined);
+        var newValue1 = '<name>'+ obj.shows[i] + '</name>';
+        var newValue2 = 'HIGHLIGHTS/'+ obj.shows[i];
+        var newValue3 = '<name>'+ obj.shows[i] + ' PWK';
+        // alert(currentValue1);
+        // alert(newValue1);
 
-            var inText = myFile.read();
-                inText = inText
-                    .replace(currentValue1, newValue1)
-                    .replace(currentValue2, newValue2)
-                    .replace(currentValue3, newValue3);
+        var myFile = new File(completeOutputPath);
+            myFile.open('e', undefined, undefined);
 
-            myFile.seek(0);
-            myFile.write(inText);
-            myFile.close();
+        var inText = myFile.read();
+            inText = inText
+                .replace(currentValue1, newValue1)
+                .replace(currentValue2, newValue2)
+                .replace(currentValue3, newValue3);
 
-            importXML(completeOutputPath);
-            currentShow = obj.shows[i];
-            // alert(currentShow);
-        };
+        myFile.seek(0);
+        myFile.write(inText);
+        myFile.close();
 
-    }
-    else { alert("XML Directory can not be found."); }
+        importXML(completeOutputPath);
+        currentShow = obj.shows[i];
+        // alert(currentShow);
+    };
 }
 
 function importXML(targetFile){
