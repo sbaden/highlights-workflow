@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-    alert('JS connected');
+    // alert('JS connected');
 
     const fs = require('fs');
     var csInterface = new CSInterface();

@@ -1,5 +1,39 @@
 
-function exportXML(obj){
+function processXML(obj){
+    var xmlPath = exportXML()    
+
+    var currentShow = obj.currentShow;
+
+    for(var i = 0; i<obj.shows.length; i++){
+        // SET VALUES TO SEARCH FOR 
+        var currentValue1 = new RegExp('<name>'+ currentShow, 'g');
+        var currentValue2 = new RegExp('HIGHLIGHTS/'+ currentShow, 'g');
+
+        // SET VALUES TO REPLACE WITH
+        var newValue1 = '<name>'+ obj.shows[i];
+        var newValue2 = 'HIGHLIGHTS/'+ obj.shows[i];
+
+        // XML: OPEN, UPDATE, CLOSE
+        var myFile = new File(xmlPath);
+            myFile.open('e', undefined, undefined);
+
+        var inText = myFile.read();
+            inText = inText
+                .replace(currentValue1, newValue1)
+                .replace(currentValue2, newValue2);
+
+        myFile.seek(0);
+        myFile.write(inText);
+        myFile.close();
+
+        // IMPORT UPDATED XML INTO PPRO
+        importXML(xmlPath);
+
+        currentShow = obj.shows[i];
+    };
+}
+
+function exportXML(){
     var projPath = app.project.path;
     projPath = projPath.substr(0, projPath.lastIndexOf(getSep())+1);
     xmlDirectory = projPath + 'XML_DOC';
@@ -21,35 +55,7 @@ function exportXML(obj){
         ".";
     // $.writeln(info);
 
-    var currentShow = obj.currentShow;
-
-    for(var i = 0; i<obj.shows.length; i++){
-        // SET VALUES TO SEARCH FOR 
-        var currentValue1 = new RegExp('<name>'+ currentShow, 'g');
-        var currentValue2 = new RegExp('HIGHLIGHTS/'+ currentShow, 'g');
-
-        // SET VALUES TO REPLACE WITH
-        var newValue1 = '<name>'+ obj.shows[i];
-        var newValue2 = 'HIGHLIGHTS/'+ obj.shows[i];
-
-        // XML: OPEN, UPDATE, CLOSE
-        var myFile = new File(completeOutputPath);
-            myFile.open('e', undefined, undefined);
-
-        var inText = myFile.read();
-            inText = inText
-                .replace(currentValue1, newValue1)
-                .replace(currentValue2, newValue2);
-
-        myFile.seek(0);
-        myFile.write(inText);
-        myFile.close();
-
-        // IMPORT UPDATED XML INTO PPRO
-        importXML(completeOutputPath);
-
-        currentShow = obj.shows[i];
-    };
+    return completeOutputPath;
 }
 
 function importXML(targetFile){
@@ -61,3 +67,26 @@ function getSep() {
 	var sep = Folder.fs == 'Macintosh' ?  '/' : '\\';
     return sep;
 }
+
+
+//// RELOAD JSX - NOT WORKING ////
+//// Evaluate a file and catch the exception.
+// function evalFile(path) {
+//     try {
+//         var value = $.evalFile(path);
+//     } catch (e) {alert("Exception:" + e);}
+// }
+
+// //// Evaluate all the files in the given folder 
+// function evalFiles(jsxFolderPath) {
+//     var folder = new Folder(jsxFolderPath);
+
+//     if (folder.exists) {
+//         var jsxFiles = folder.getFiles("*.jsx");
+
+//         for (var i = 0; i < jsxFiles.length; i++) {
+//             var jsxFile = jsxFiles[i];
+//             evalFile(jsxFile);
+//         }
+//     }
+// }

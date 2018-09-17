@@ -1,13 +1,4 @@
 
-// function parseObj(obj){
-//     alert(obj.message);
-// }
-
-// function sayHello(){
-//     alert('hello');
-// }
-
-
 function exportXML(){
     var projPath = app.project.path;
     projPath = projPath.substr(0, projPath.lastIndexOf(getSep())+1);
