@@ -1,6 +1,6 @@
 
 function processXML(obj){
-    var xmlPath = exportXML()    
+    var xmlPath = exportXML(obj.xmlRepo)    
 
     var currentShow = obj.currentShow;
 
@@ -33,10 +33,11 @@ function processXML(obj){
     };
 }
 
-function exportXML(){
-    var projPath = app.project.path;
-    projPath = projPath.substr(0, projPath.lastIndexOf(getSep())+1);
-    xmlDirectory = projPath + 'XML_DOC';
+function exportXML(path){
+    // var projPath = app.project.path;
+    // projPath = projPath.substr(0, projPath.lastIndexOf(getSep())+1);
+    // xmlDirectory = projPath + 'XML_DOC';
+    xmlDirectory = path + 'XML_DOCS';
 
     // IF XML DIRECTORY DOESN'T EXIST, CREATE IT
     if(! xmlDirectory.exists){ Folder(xmlDirectory).create(); }

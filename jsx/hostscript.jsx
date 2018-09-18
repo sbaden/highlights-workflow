@@ -1,6 +1,6 @@
 
 function processXML(obj){
-    var xmlPath = exportXML()    
+    var xmlDoc = exportXML(obj.xmlRepo)    
 
     var currentShow = obj.currentShow;
 
@@ -14,7 +14,7 @@ function processXML(obj){
         var newValue2 = 'HIGHLIGHTS/'+ obj.shows[i];
 
         // XML: OPEN, UPDATE, CLOSE
-        var myFile = new File(xmlPath);
+        var myFile = new File(xmlDoc);
             myFile.open('e', undefined, undefined);
 
         var inText = myFile.read();
@@ -27,16 +27,17 @@ function processXML(obj){
         myFile.close();
 
         // IMPORT UPDATED XML INTO PPRO
-        importXML(xmlPath);
+        importXML(xmlDoc);
 
         currentShow = obj.shows[i];
     };
 }
 
-function exportXML(){
-    var projPath = app.project.path;
-    projPath = projPath.substr(0, projPath.lastIndexOf(getSep())+1);
-    xmlDirectory = projPath + 'XML_DOC';
+function exportXML(path){
+    // var projPath = app.project.path;
+    // projPath = projPath.substr(0, projPath.lastIndexOf(getSep())+1);
+    // xmlDirectory = projPath + 'XML_DOC';
+    xmlDirectory = path + 'XML_DOCS';
 
     // IF XML DIRECTORY DOESN'T EXIST, CREATE IT
     if(! xmlDirectory.exists){ Folder(xmlDirectory).create(); }
@@ -44,18 +45,18 @@ function exportXML(){
     var outputName = app.project.name;
     outputName = outputName.substr(0, outputName.lastIndexOf('.'));
     var extention = '.xml';
-    var completeOutputPath = xmlDirectory + getSep() + outputName + extention;
+    var xmlPath = xmlDirectory + getSep() + outputName + extention;
 
     // EXPORT XML FOR PPRO PROJECT
-    app.project.exportFinalCutProXML(completeOutputPath, 1); // 1 == suppress UI
+    app.project.exportFinalCutProXML(xmlPath, 1); // 1 == suppress UI
     var info = "Exported FCP XML for " + 
         outputName + 
         " to " + 
-        completeOutputPath + 
+        xmlPath + 
         ".";
     // $.writeln(info);
 
-    return completeOutputPath;
+    return xmlPath;
 }
 
 function importXML(targetFile){
