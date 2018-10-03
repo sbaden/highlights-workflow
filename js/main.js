@@ -1,29 +1,21 @@
 
 $(document).ready(function(){
-    // console.log('JS connected');
-
     const fs = require('fs');
     const cmd = require('node-cmd');
-
-    var csInterface = new CSInterface();
-    let shows = ['TA', 'GMF','GD', 'TAM'];
+    let csInterface = new CSInterface();
 
     window.onload = function(){
-
-        let profile_sot = {
-            targetXml: ''
-        }
-
         $('#btn-version_sot').on('click', function(){
             csInterface.evalScript('getProjPath()',
                 function(result){
+                    let shows = ['TA', 'GMF','GD', 'TAM'];
                     let projDir = result.substr(0, result.lastIndexOf('/')+1);
                     let projFile = result.substr(result.lastIndexOf('/')+1);
 
                     let copyFile = "cp " + projFile + " pproXML.gz";
                     let unzip = "gunzip -d pproXML.gz";
                     let rename = "mv pproXML pproXML.prproj";
-                    profile_sot.targetXml = projDir + 'pproXML.prproj';
+                    let targetXml = projDir + 'pproXML.prproj';
                     // CHANGE ALL EXTENSIONS OF ONE TYPE TO ANOTHER
                     // let rename = "find . -iname \"*.prproj\" -exec bash -c 'mv \"$0\" \"${0%\\.prproj}.zip\"' {} \\;"  // NEED A '\' IN FRONT OF " AND \
                     
@@ -39,7 +31,7 @@ $(document).ready(function(){
                         function(err, data, stderr){
                             // console.log('Current working directory list:\n\n', data);
                             for(let i=0; i<shows.length-1; i++){
-                                setShows(profile_sot.targetXml, shows[i], shows[i+1]);
+                                setShows(targetXml, shows[i], shows[i+1]);
                             };
                         }
                     );
@@ -55,11 +47,9 @@ $(document).ready(function(){
             let newValue2;
 
             $.when(
-                // console.log('setShows: currentShow: ' + currentShow),
                 currentValue1 = new RegExp('<Name>'+ currentShow, 'g'),
                 currentValue2 = new RegExp('HIGHLIGHTS/'+ currentShow, 'g'),
 
-                // console.log("setShows: show: " + show),
                 newValue1 = '<Name>'+ show,
                 newValue2 = 'HIGHLIGHTS/'+ show,
 
@@ -74,9 +64,6 @@ $(document).ready(function(){
         }
         
 
-
-        
-        
 
         ////TEMP BUTTON FOR DEV: RELOADS EXTENTION PANEL
         // $("#btn_reload").click(reloadPanel);
