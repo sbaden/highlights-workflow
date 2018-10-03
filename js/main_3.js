@@ -24,6 +24,7 @@ $(document).ready(function(){
                     let unzip = "gunzip -d pproXML.gz";
                     let rename = "mv pproXML pproXML.prproj";
                     profile_sot.targetXml = projDir + 'pproXML.prproj';
+                    // CHANGE ALL EXTENSIONS OF ONE TYPE TO ANOTHER
                     // let rename = "find . -iname \"*.prproj\" -exec bash -c 'mv \"$0\" \"${0%\\.prproj}.zip\"' {} \\;"  // NEED A '\' IN FRONT OF " AND \
                     
                     let cmdStr =
@@ -78,11 +79,11 @@ $(document).ready(function(){
         
 
         ////TEMP BUTTON FOR DEV: RELOADS EXTENTION PANEL
-        $("#btn_reload").click(reloadPanel);
+        // $("#btn_reload").click(reloadPanel);
 
-        function reloadPanel() {
-            location.reload();
-        }
+        // function reloadPanel() {
+        //     location.reload();
+        // }
     }
 
 });
