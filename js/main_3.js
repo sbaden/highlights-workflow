@@ -78,11 +78,11 @@ $(document).ready(function(){
         
 
         ////TEMP BUTTON FOR DEV: RELOADS EXTENTION PANEL
-        // $("#btn_reload").click(reloadPanel);
+        $("#btn_reload").click(reloadPanel);
 
-        // function reloadPanel() {
-        //     location.reload();
-        // }
+        function reloadPanel() {
+            location.reload();
+        }
     }
 
 });

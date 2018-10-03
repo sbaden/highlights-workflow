@@ -15,7 +15,7 @@
             <Host Name="IDSN" Port="8090" />
             
             <!-- Premiere -->
-            <Host Name="PPRO" Port="8091" />
+            <Host Name="PPRO" Port="9091" />
             
             <!-- AfterEffects -->
             <Host Name="AEFT" Port="8092" />

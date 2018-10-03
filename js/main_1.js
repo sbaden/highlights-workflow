@@ -1,4 +1,4 @@
-
+// VERSION 01: RUN EVERYTHING THRU EXTENDSCRIPT
 $(document).ready(function(){
     // alert('JS connected');
 

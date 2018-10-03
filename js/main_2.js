@@ -1,10 +1,11 @@
-
+// VERSION 02: RUN EVERYTHING THRU JS
 $(document).ready(function(){
-    // alert('JS connected');
+    console.log('JS connected');
 
     const fs = require('fs');
-    var csInterface = new CSInterface();
 
+    var csInterface = new CSInterface();
+    let shows = ['TA', 'GMF','GD', 'TAM'];
 
     window.onload = function(){
 
@@ -15,49 +16,42 @@ $(document).ready(function(){
         $('#btn-version_sot').on('click', function(){
             csInterface.evalScript('exportXML()',
                 function(result){
-
                     profile_sot.targetXml = result;
 
-                    let currentShow = 'TA';
-                    let shows = ['GMF', 'GD', 'TAM'];
-
-                    shows.forEach(function(show, index, array) {
-                        alert(index + ': ' + array.length + ': ' + show);
-                    
-                        let currentValue1 = new RegExp('<name>'+ currentShow, 'g');
-                        let currentValue2 = new RegExp('HIGHLIGHTS/'+ currentShow, 'g');
-
-                        let newValue1 = '<name>'+ obj.shows[i];
-                        let newValue2 = 'HIGHLIGHTS/'+ obj.shows[i];
-
-                        const res = fs.readFileSync(profile_sot.targetXml, 'utf-8')
-                            .replace(currentValue1, newValue1)
-                            .replace(currentValue2, newValue2);
-
-                        fs.writeFile(profile_sot.targetXml, res, 'utf-8', function (err) {
-                            if (err){
-                                alert(err);
-                                return console.log(err);
-                            }
-                            else{
-                                alert('search & replace success');
-                                currentShow = show;
-                                importXML();
-                            }
-                        });
-                    });
+                    for(let i=0; i<shows.length-1; i++){
+                        setShows(profile_sot.targetXml, shows[i], shows[i+1]);
+                    };
                 }
             );
         });
 
+        function setShows(fileName, currentShow, show) {
+            console.log('XML: ' + fileName);
+            let res;
+            let currentValue1;
+            let currentValue2;
+            let newValue1;
+            let newValue2;
 
-        function importXML(){
-            csInterface.evalScript('importXML('+ JSON.stringify(profile_sot.targetXml) +')',
-                function(result){
-                    if(result){
-                        // alert(result);
-                    }
-                }
+            console.log('readfile');
+            $.when(
+                console.log('setShows: currentShow: ' + currentShow),
+                currentValue1 = new RegExp('<name>'+ currentShow, 'g'),
+                currentValue2 = new RegExp('HIGHLIGHTS/'+ currentShow, 'g'),
+
+                console.log("setShows: show: " + show),
+                newValue1 = '<name>'+ show,
+                newValue2 = 'HIGHLIGHTS/'+ show,
+
+                res = fs.readFileSync(fileName, 'utf-8').replace(currentValue1, newValue1).replace(currentValue2, newValue2)
+            ).then(
+                console.log('res: ')
+            ).then(
+                console.log("before writefile"),
+                fs.writeFileSync(fileName, res, 'utf-8')
+            ).then(
+                console.log("before import"),
+                csInterface.evalScript('importXML('+ JSON.stringify(fileName) +')')
             );
         }
         
