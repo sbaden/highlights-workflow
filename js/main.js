@@ -8,11 +8,11 @@ $(document).ready(function(){
         $('#btn-version_sot').on('click', function(){
             csInterface.evalScript('getProjPath()',
                 function(result){
-                    let shows = ['TA', 'GMF','GD', 'TAM'];
+                    let shows = ['TA', 'EGD', 'GMFB','MTH'];
                     let projDir = result.substr(0, result.lastIndexOf('/')+1);
                     let projFile = result.substr(result.lastIndexOf('/')+1);
 
-                    let copyFile = "cp " + projFile + " pproXML.gz";
+                    let copyFile = "cp '" + projFile + "' pproXML.gz";
                     let unzip = "gunzip -d pproXML.gz";
                     let rename = "mv pproXML pproXML.prproj";
                     let targetXml = projDir + 'pproXML.prproj';
@@ -20,7 +20,7 @@ $(document).ready(function(){
                     // let rename = "find . -iname \"*.prproj\" -exec bash -c 'mv \"$0\" \"${0%\\.prproj}.zip\"' {} \\;"  // NEED A '\' IN FRONT OF " AND \
                     
                     let cmdStr =
-                        "cd .." + projDir + "\n" +
+                        "cd ..'" + projDir + "'\n" +
                         copyFile + "\n" +
                         unzip + "\n" +
                         rename + "\n" +
@@ -48,10 +48,10 @@ $(document).ready(function(){
 
             $.when(
                 currentValue1 = new RegExp('<Name>'+ currentShow, 'g'),
-                currentValue2 = new RegExp('HIGHLIGHTS/'+ currentShow, 'g'),
+                currentValue2 = new RegExp('HIGHLIGHT_VERSIONING/'+ currentShow, 'g'),
 
                 newValue1 = '<Name>'+ show,
-                newValue2 = 'HIGHLIGHTS/'+ show,
+                newValue2 = 'HIGHLIGHT_VERSIONING/'+ show,
 
                 res = fs.readFileSync(fileName, 'utf-8').replace(currentValue1, newValue1).replace(currentValue2, newValue2)
             ).then(
@@ -72,5 +72,4 @@ $(document).ready(function(){
         //     location.reload();
         // }
     }
-
 });
